@@ -74,35 +74,19 @@ Sempre que concluir uma etapa:
 
 ### Padrão de Commits
 ```
-feat: adicionar sistema de naves autônomas
-fix: resolver problema de WebSocket
-docs: atualizar documentação de API
-refactor: otimizar performance do canvas
-test: adicionar testes para mineração
+feat: add user authentication system
+fix: resolve WebSocket connection timeout
+docs: update API documentation
+refactor: optimize database queries
+test: add unit tests for user service
+perf: improve application startup time
+chore: update dependencies
+style: format code according to guidelines
+ci: add automated testing pipeline
+build: configure production build
 ```
 
-## 🎮 6. Contexto Específico: Space Miner Idle
-
-### Prioridades do Projeto
-1. **Resolver WebSocket** - Problema crítico de conexão
-2. **Integrar Matter.js** - Física realista
-3. **Polish UI/UX** - Melhorias visuais
-4. **Deploy Docker** - Containerização
-
-### Métricas de Qualidade
-- **Performance**: 60 FPS consistentes
-- **Memória**: < 50MB RAM
-- **Load Time**: < 3 segundos
-- **WebSocket Latency**: < 100ms
-
-### Stack Tecnológico
-- **Frontend**: React 18 + TypeScript + Vite
-- **Backend**: Node.js + Express + WebSocket
-- **Database**: SQLite + Prisma ORM
-- **Physics**: Matter.js (pendente)
-- **Deployment**: Docker (pendente)
-
-## 🚀 7. Checklist de Finalização
+## 🚀 6. Checklist de Finalização
 
 ### Antes de Considerar Tarefa Concluída
 - [ ] **Código funcionando** - Testado localmente

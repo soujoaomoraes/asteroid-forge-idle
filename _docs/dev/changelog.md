@@ -1,5 +1,26 @@
 # 📝 Changelog - Space Miner Idle
 
+## [v0.5.1] - 2025-01-29
+
+### Removed
+- 🧹 **Componentes Não Utilizados**: Removidos 9 componentes duplicados e não utilizados
+  - SpaceCanvas.tsx (versão original não usada)
+  - SpaceCanvasFixed.tsx (versão fixa não usada)
+  - SimpleCanvas.tsx (versão simples não usada)
+  - ResourcePanel.tsx (versão original não usada)
+  - ResourcePanelOptimized.tsx (versão otimizada não usada)
+  - UpgradePanel.tsx (versão original não usada)
+  - UpgradePanelOptimized.tsx (versão otimizada não usada)
+  - ShipManager.tsx (versão original não usada)
+  - MiningFeedback.tsx (versão original não usada)
+- 🧹 **Imports Limpos**: Removido import não utilizado do SpaceCanvas no App.tsx
+
+### Technical
+- Redução de 9 arquivos desnecessários
+- Código mais limpo e organizado
+- Manutenção simplificada
+- Apenas componentes UltraSimple em uso
+
 ## [v0.4.1] - 2025-07-29
 
 ### Fixed

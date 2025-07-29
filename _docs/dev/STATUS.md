@@ -1,8 +1,8 @@
 # Status do Projeto - Asteroid Forge Idle
 
 ## 📊 Status Geral
-- **Versão**: v0.5.0
-- **Status**: ✅ ESTÁVEL - Física Realista Implementada
+- **Versão**: v0.5.1
+- **Status**: ✅ ESTÁVEL - Física Realista + Código Limpo
 - **Última Atualização**: 2025-01-29
 
 ## 🎯 Problema Crítico
@@ -38,11 +38,12 @@
 - **AI Navigation**: ✅ FUNCIONAL - Movimento inteligente
 
 ### ✅ UI Components
-- **ResourcePanel**: ✅ OTIMIZADO - Versão ultra-simplificada sem WebSocket
-- **UpgradePanel**: ✅ OTIMIZADO - Versão ultra-simplificada sem WebSocket
-- **ShipManager**: ✅ OTIMIZADO - Versão ultra-simplificada sem WebSocket
-- **MiningFeedback**: ✅ OTIMIZADO - Versão ultra-simplificada sem WebSocket
+- **ResourcePanelUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
+- **UpgradePanelUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
+- **ShipManagerUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
+- **MiningFeedbackUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
 - **Layout UI**: ✅ CORRIGIDO - CSS otimizado sem conflitos
+- **Código Limpo**: ✅ OTIMIZADO - 9 componentes não utilizados removidos
 
 ### ✅ Backend
 - **Server**: ✅ ESTÁVEL - Node.js + Express + TypeScript
@@ -67,6 +68,10 @@
 ### ✅ CSS Layout Issues
 - **Status**: ✅ RESOLVIDO - Container flex com posicionamento otimizado
 - **Solução**: UI.css unificado e remoção de position: fixed conflitante
+
+### ✅ Código Limpo
+- **Status**: ✅ RESOLVIDO - Componentes não utilizados removidos
+- **Solução**: Remoção de 9 componentes duplicados e imports não utilizados
 
 ## 📈 Próximos Passos
 

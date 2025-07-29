@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { SpaceCanvas } from './components/SpaceCanvas';
 import { SpaceCanvasSimple } from './components/SpaceCanvasSimple';
 import { SpaceCanvasPhysics } from './components/SpaceCanvasPhysics';
 import ResourcePanelUltraSimple from './components/ResourcePanelUltraSimple';
