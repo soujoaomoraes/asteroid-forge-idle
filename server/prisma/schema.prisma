@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model GameState {
+  id        String   @id @default(cuid())
+  playerId  String   @unique
+  resources Resources?
+  ships     Ship[]
+  upgrades  Upgrade[]
+  statistics Statistics?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("game_states")
+}
+
+model Resources {
+  id          String @id @default(cuid())
+  crystals    Int    @default(0)
+  energy      Int    @default(100)
+  research    Int    @default(0)
+  reputation  Int    @default(0)
+  gameStateId String @unique
+  gameState   GameState @relation(fields: [gameStateId], references: [id])
+
+  @@map("resources")
+}
+
+model Ship {
+  id          String   @id @default(cuid())
+  type        ShipType
+  position    String   // JSON string: {x: number, y: number}
+  velocity    String   // JSON string: {x: number, y: number}
+  rotation    Float
+  efficiency  Float    @default(1.0)
+  capacity    Int      @default(100)
+  gameStateId String
+  gameState   GameState @relation(fields: [gameStateId], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@map("ships")
+}
+
+model Upgrade {
+  id          String     @id @default(cuid())
+  type        UpgradeType
+  level       Int        @default(1)
+  cost        Int
+  effect      String     // JSON string: Record<string, any>
+  gameStateId String
+  gameState   GameState @relation(fields: [gameStateId], references: [id])
+
+  @@map("upgrades")
+}
+
+model Statistics {
+  id              String @id @default(cuid())
+  totalPlayTime   Int    @default(0)
+  totalCrystals   Int    @default(0)
+  shipsDeployed   Int    @default(0)
+  upgradesBought  Int    @default(0)
+  gameStateId     String @unique
+  gameState       GameState @relation(fields: [gameStateId], references: [id])
+
+  @@map("statistics")
+}
+
+enum ShipType {
+  SCOUT
+  MINER
+  HAULER
+  DESTROYER
+}
+
+enum UpgradeType {
+  SHIP_SPEED
+  SHIP_CAPACITY
+  MINING_EFFICIENCY
+  ENERGY_GENERATION
+  RESEARCH_BOOST
+}

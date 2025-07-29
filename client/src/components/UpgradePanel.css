@@ -1,0 +1,242 @@
+.upgrade-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 16px;
+  background: rgba(0, 255, 255, 0.2);
+  border: 2px solid #00ffff;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.upgrade-toggle:hover {
+  background: rgba(0, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 255, 255, 0.4);
+}
+
+.upgrade-panel {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Courier New', monospace;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.3);
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.upgrade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(0, 255, 255, 0.1);
+  border-bottom: 1px solid #00ffff;
+}
+
+.upgrade-header h3 {
+  margin: 0;
+  color: #00ffff;
+  font-size: 18px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.upgrades-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.upgrades-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.upgrades-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.upgrades-list::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 3px;
+}
+
+.no-upgrades {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+}
+
+.no-upgrades p {
+  margin: 8px 0;
+}
+
+.upgrade-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.upgrade-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.upgrade-item.purchased {
+  opacity: 0.6;
+  background: rgba(0, 255, 0, 0.1);
+  border-color: #00ff00;
+}
+
+.upgrade-icon {
+  font-size: 24px;
+  margin-right: 12px;
+  width: 32px;
+  text-align: center;
+}
+
+.upgrade-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.upgrade-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.upgrade-description {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.upgrade-cost {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cost-item {
+  font-size: 11px;
+  padding: 2px 6px;
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #00ffff;
+}
+
+.upgrade-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.purchase-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Courier New', monospace;
+}
+
+.purchase-btn.affordable {
+  background: #00ff00;
+  color: #000;
+}
+
+.purchase-btn.affordable:hover {
+  background: #00cc00;
+  transform: scale(1.05);
+}
+
+.purchase-btn.expensive {
+  background: #666;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.purchase-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.purchased-badge {
+  font-size: 11px;
+  color: #00ff00;
+  font-weight: bold;
+  padding: 4px 8px;
+  background: rgba(0, 255, 0, 0.2);
+  border-radius: 4px;
+  border: 1px solid #00ff00;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .upgrade-panel {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    bottom: 70px;
+  }
+  
+  .upgrade-toggle {
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+/* Animation for purchase */
+.upgrade-item.purchasing {
+  animation: purchaseGlow 0.5s ease-in-out;
+}
+
+@keyframes purchaseGlow {
+  0% { background: rgba(255, 255, 255, 0.05); }
+  50% { background: rgba(0, 255, 0, 0.3); }
+  100% { background: rgba(0, 255, 0, 0.1); }
+} 

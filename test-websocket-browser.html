@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .connected { background-color: #d4edda; color: #155724; }
+        .disconnected { background-color: #f8d7da; color: #721c24; }
+        .log { background-color: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 5px; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 WebSocket Browser Test</h1>
+    
+    <div id="status" class="status disconnected">
+        Status: Desconectado
+    </div>
+    
+    <div>
+        <button onclick="connect()">🔌 Conectar</button>
+        <button onclick="disconnect()">🔌 Desconectar</button>
+        <button onclick="clearLog()">🗑️ Limpar Log</button>
+    </div>
+    
+    <div>
+        <h3>📊 Estatísticas:</h3>
+        <p>Mensagens recebidas: <span id="messageCount">0</span></p>
+        <p>Tempo conectado: <span id="connectedTime">0</span>s</p>
+        <p>Tentativas de reconexão: <span id="reconnectAttempts">0</span></p>
+    </div>
+    
+    <div class="log" id="log"></div>
+
+    <script>
+        let ws = null;
+        let messageCount = 0;
+        let reconnectAttempts = 0;
+        let startTime = null;
+        let isManualDisconnect = false;
+
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(connected) {
+            const statusDiv = document.getElementById('status');
+            if (connected) {
+                statusDiv.className = 'status connected';
+                statusDiv.textContent = 'Status: Conectado';
+            } else {
+                statusDiv.className = 'status disconnected';
+                statusDiv.textContent = 'Status: Desconectado';
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('messageCount').textContent = messageCount;
+            document.getElementById('reconnectAttempts').textContent = reconnectAttempts;
+            
+            if (startTime) {
+                const connectedTime = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('connectedTime').textContent = connectedTime;
+            }
+        }
+
+        function connect() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                log('⚠️ Já conectado');
+                return;
+            }
+
+            log('🔌 Tentando conectar...');
+            isManualDisconnect = false;
+            
+            try {
+                ws = new WebSocket('ws://localhost:3000');
+                
+                ws.onopen = () => {
+                    log('✅ Conectado com sucesso!');
+                    updateStatus(true);
+                    startTime = Date.now();
+                    
+                    // Enviar heartbeat a cada 5 segundos
+                    setInterval(() => {
+                        if (ws && ws.readyState === WebSocket.OPEN) {
+                            ws.send(JSON.stringify({
+                                type: 'PING',
+                                timestamp: new Date().toISOString()
+                            }));
+                            log('🏓 Heartbeat enviado');
+                        }
+                    }, 5000);
+                };
+
+                ws.onmessage = (event) => {
+                    try {
+                        const message = JSON.parse(event.data);
+                        messageCount++;
+                        log(`📨 Mensagem #${messageCount}: ${message.type}`);
+                        updateStats();
+                    } catch (error) {
+                        log(`❌ Erro ao processar mensagem: ${error}`);
+                    }
+                };
+
+                ws.onclose = (event) => {
+                    const duration = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+                    log(`🔌 Desconectado após ${duration}s: código ${event.code}, razão: "${event.reason}"`);
+                    updateStatus(false);
+                    startTime = null;
+                    
+                    // Reconectar automaticamente se não foi desconexão manual
+                    if (!isManualDisconnect && event.code !== 1000) {
+                        reconnectAttempts++;
+                        log(`🔄 Tentando reconectar em 3s... (tentativa ${reconnectAttempts})`);
+                        setTimeout(connect, 3000);
+                    }
+                };
+
+                ws.onerror = (error) => {
+                    log(`❌ Erro no WebSocket: ${error}`);
+                };
+
+            } catch (error) {
+                log(`❌ Erro ao criar WebSocket: ${error}`);
+            }
+        }
+
+        function disconnect() {
+            if (ws) {
+                log('🔌 Desconectando manualmente...');
+                isManualDisconnect = true;
+                ws.close(1000, 'Manual disconnect');
+            }
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            messageCount = 0;
+            reconnectAttempts = 0;
+            updateStats();
+        }
+
+        // Atualizar estatísticas a cada segundo
+        setInterval(updateStats, 1000);
+
+        // Conectar automaticamente ao carregar a página
+        window.onload = () => {
+            log('🚀 Página carregada, conectando automaticamente...');
+            connect();
+        };
+    </script>
+</body>
+</html> 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test - Space Miner Idle</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .connected { background: #004400; }
+        .disconnected { background: #440000; }
+        .message {
+            background: #1a1a1a;
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 3px solid #00ff00;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .resource {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .resource-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 WebSocket Test - Space Miner Idle</h1>
+        
+        <div id="status" class="status disconnected">
+            Status: Desconectado
+        </div>
+        
+        <div class="controls">
+            <button onclick="connect()">🔌 Conectar</button>
+            <button onclick="disconnect()">❌ Desconectar</button>
+            <button onclick="requestResources()">📊 Solicitar Recursos</button>
+            <button onclick="ping()">🏓 Ping</button>
+        </div>
+        
+        <div class="resources">
+            <div class="resource">
+                <div>Crystals</div>
+                <div id="crystals" class="resource-value">0</div>
+            </div>
+            <div class="resource">
+                <div>Energy</div>
+                <div id="energy" class="resource-value">0</div>
+            </div>
+            <div class="resource">
+                <div>Research</div>
+                <div id="research" class="resource-value">0</div>
+            </div>
+            <div class="resource">
+                <div>Reputation</div>
+                <div id="reputation" class="resource-value">0</div>
+            </div>
+        </div>
+        
+        <h3>📨 Mensagens Recebidas:</h3>
+        <div id="messages"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        const messagesDiv = document.getElementById('messages');
+        const statusDiv = document.getElementById('status');
+
+        function addMessage(message) {
+            const div = document.createElement('div');
+            div.className = 'message';
+            div.innerHTML = `
+                <strong>${new Date().toLocaleTimeString()}</strong><br>
+                <strong>Tipo:</strong> ${message.type}<br>
+                <strong>Dados:</strong> ${JSON.stringify(message.data, null, 2)}
+            `;
+            messagesDiv.insertBefore(div, messagesDiv.firstChild);
+            
+            // Limitar a 20 mensagens
+            while (messagesDiv.children.length > 20) {
+                messagesDiv.removeChild(messagesDiv.lastChild);
+            }
+        }
+
+        function updateStatus(connected) {
+            statusDiv.className = connected ? 'status connected' : 'status disconnected';
+            statusDiv.textContent = `Status: ${connected ? 'Conectado' : 'Desconectado'}`;
+        }
+
+        function updateResources(data) {
+            document.getElementById('crystals').textContent = data.crystals || 0;
+            document.getElementById('energy').textContent = data.energy || 0;
+            document.getElementById('research').textContent = data.research || 0;
+            document.getElementById('reputation').textContent = data.reputation || 0;
+        }
+
+        function connect() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                alert('Já conectado!');
+                return;
+            }
+
+            ws = new WebSocket('ws://localhost:3000');
+
+            ws.onopen = function() {
+                console.log('🔌 WebSocket conectado');
+                updateStatus(true);
+                addMessage({ type: 'CONNECTION', data: 'Conectado com sucesso' });
+            };
+
+            ws.onmessage = function(event) {
+                try {
+                    const message = JSON.parse(event.data);
+                    console.log('📨 Mensagem recebida:', message);
+                    addMessage(message);
+                    
+                    // Atualizar recursos se recebidos
+                    if (message.type === 'RESOURCES_UPDATED' || message.type === 'GAME_STATE_INIT') {
+                        if (message.data && message.data.crystals !== undefined) {
+                            updateResources(message.data);
+                        }
+                    }
+                } catch (error) {
+                    console.error('❌ Erro ao processar mensagem:', error);
+                }
+            };
+
+            ws.onclose = function() {
+                console.log('🔌 WebSocket desconectado');
+                updateStatus(false);
+                addMessage({ type: 'CONNECTION', data: 'Desconectado' });
+            };
+
+            ws.onerror = function(error) {
+                console.error('❌ Erro WebSocket:', error);
+                updateStatus(false);
+                addMessage({ type: 'ERROR', data: 'Erro de conexão' });
+            };
+        }
+
+        function disconnect() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+
+        function requestResources() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'REQUEST_RESOURCES',
+                    timestamp: new Date().toISOString()
+                }));
+                addMessage({ type: 'SENT', data: 'REQUEST_RESOURCES' });
+            } else {
+                alert('Não conectado!');
+            }
+        }
+
+        function ping() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'PING',
+                    timestamp: new Date().toISOString()
+                }));
+                addMessage({ type: 'SENT', data: 'PING' });
+            } else {
+                alert('Não conectado!');
+            }
+        }
+
+        // Auto-conectar quando a página carrega
+        window.onload = function() {
+            setTimeout(connect, 1000);
+        };
+    </script>
+</body>
+</html> 

@@ -1,0 +1,69 @@
+erDiagram
+    GameState {
+        string id PK
+        string playerId UK
+        datetime createdAt
+        datetime updatedAt
+    }
+    
+    Resources {
+        string id PK
+        int crystals
+        int energy
+        int research
+        int reputation
+        string gameStateId FK
+    }
+    
+    Ship {
+        string id PK
+        enum type
+        json position
+        json velocity
+        float rotation
+        float efficiency
+        int capacity
+        string gameStateId FK
+        datetime createdAt
+    }
+    
+    Upgrade {
+        string id PK
+        enum type
+        int level
+        int cost
+        json effect
+        string gameStateId FK
+    }
+    
+    Statistics {
+        string id PK
+        int totalPlayTime
+        int totalCrystals
+        int shipsDeployed
+        int upgradesBought
+        string gameStateId FK
+    }
+    
+    Asteroid {
+        string id PK
+        enum type
+        json position
+        float size
+        int resources
+        string sectorId FK
+    }
+    
+    Sector {
+        string id PK
+        string name
+        int reputationRequired
+        float asteroidDensity
+        json bounds
+    }
+    
+    GameState ||--|| Resources : has
+    GameState ||--o{ Ship : contains
+    GameState ||--o{ Upgrade : has
+    GameState ||--o| Statistics : tracks
+    Sector ||--o{ Asteroid : contains 

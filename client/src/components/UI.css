@@ -1,0 +1,76 @@
+/* Layout dos painéis de UI */
+.ui-panels {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1000;
+}
+
+/* Ajustes para cada painel */
+.resource-panel,
+.upgrade-panel,
+.ship-manager {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  font-family: 'Courier New', monospace;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.3);
+}
+
+/* Altura máxima para evitar overflow */
+.resource-panel,
+.upgrade-panel,
+.ship-manager {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Scrollbar personalizada */
+.resource-panel::-webkit-scrollbar,
+.upgrade-panel::-webkit-scrollbar,
+.ship-manager::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resource-panel::-webkit-scrollbar-track,
+.upgrade-panel::-webkit-scrollbar-track,
+.ship-manager::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.resource-panel::-webkit-scrollbar-thumb,
+.upgrade-panel::-webkit-scrollbar-thumb,
+.ship-manager::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+.resource-panel::-webkit-scrollbar-thumb:hover,
+.upgrade-panel::-webkit-scrollbar-thumb:hover,
+.ship-manager::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .ui-panels {
+    position: static;
+    width: 100%;
+    margin: 20px;
+  }
+  
+  .resource-panel,
+  .upgrade-panel,
+  .ship-manager {
+    max-height: 300px;
+  }
+} 

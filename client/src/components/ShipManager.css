@@ -1,0 +1,274 @@
+.ship-manager {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 20px;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  max-width: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.ship-manager-header {
+  margin-bottom: 20px;
+}
+
+.ship-manager-header h3 {
+  margin: 0 0 15px 0;
+  color: #00ff00;
+  font-size: 18px;
+  text-align: center;
+}
+
+.ship-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 255, 0, 0.1);
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #00ff00;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #888;
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00ff00;
+}
+
+.ship-deploy-section {
+  margin-bottom: 20px;
+}
+
+.ship-deploy-section h4 {
+  margin: 0 0 15px 0;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.ship-type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ship-type-option {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ship-type-option:hover {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.ship-type-option.selected {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.2);
+}
+
+.ship-type-icon {
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+}
+
+.ship-type-info {
+  flex: 1;
+}
+
+.ship-type-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.ship-type-cost {
+  font-size: 10px;
+  color: #888;
+}
+
+.deploy-button {
+  width: 100%;
+  background: linear-gradient(45deg, #00ff00, #00cc00);
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deploy-button:hover {
+  background: linear-gradient(45deg, #00cc00, #009900);
+  transform: translateY(-2px);
+}
+
+.deploy-button:active {
+  transform: translateY(0);
+}
+
+.ship-list-section {
+  margin-bottom: 20px;
+}
+
+.ship-list-section h4 {
+  margin: 0 0 15px 0;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.ship-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.no-ships {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+  padding: 20px;
+}
+
+.no-ships p {
+  margin: 5px 0;
+}
+
+.ship-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ship-icon {
+  font-size: 16px;
+  width: 25px;
+  text-align: center;
+}
+
+.ship-info {
+  flex: 1;
+}
+
+.ship-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.ship-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ship-cargo {
+  font-size: 10px;
+  color: #888;
+}
+
+.ship-position {
+  font-size: 10px;
+  color: #888;
+  text-align: right;
+}
+
+.ship-info-panel {
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+.ship-info-panel h4 {
+  margin: 0 0 15px 0;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.ship-details {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.detail-label {
+  color: #888;
+}
+
+.detail-value {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.detail-description {
+  font-size: 10px;
+  color: #888;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #333;
+  font-style: italic;
+}
+
+/* Scrollbar personalizada */
+.ship-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ship-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.ship-list::-webkit-scrollbar-thumb {
+  background: #00ff00;
+  border-radius: 3px;
+}
+
+.ship-list::-webkit-scrollbar-thumb:hover {
+  background: #00cc00;
+} 

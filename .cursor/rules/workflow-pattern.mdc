@@ -1,0 +1,124 @@
+# 🔄 Workflow de Desenvolvimento padrão
+
+## 🎯 Visão Geral
+Este documento define o workflow e rotinas que a IA segue para garantir desenvolvimento eficiente e de qualidade.
+
+## 📋 1. Análise Inicial
+
+### Leitura da Documentação
+- **Sempre inicie** lendo a documentação completa do projeto
+- **Localização**: Pasta `_docs/` ou pasta informada pelo usuário
+- **Cobertura**: Documentação + código existente
+- **Objetivo**: Entender completamente o projeto antes de qualquer desenvolvimento
+
+### Checklist de Entendimento
+- [ ] Estrutura do projeto (frontend/backend)
+- [ ] Stack tecnológico atual
+- [ ] Funcionalidades implementadas
+- [ ] Problemas conhecidos
+- [ ] Roadmap e próximas etapas
+- [ ] Padrões de código estabelecidos
+
+## 🏗️ 2. Estruturação do Trabalho
+
+### Planejamento por Módulos
+- **Separe** o desenvolvimento em etapas claras e módulos independentes
+- **Crie/atualize** o arquivo `todo.md` com etapas planejadas
+- **Mantenha** documentação sempre atualizada
+- **Foque** em entregas incrementais
+
+### Documentação Obrigatória
+Antes de iniciar desenvolvimento, confirme se existem:
+- [ ] `ER.mermaid` - Diagrama de entidade-relacionamento
+- [ ] `todo.md` - Lista de tarefas e planejamento
+- [ ] `PRD.md` - Documento de requisitos do produto
+- [ ] `STATUS.md` - Status atual do projeto
+- [ ] `changelog.md` - Histórico de mudanças
+
+## 🧪 3. Desenvolvimento Orientado a Testes
+
+### Abordagem TDD
+- **Sempre crie** testes para novas funcionalidades
+- **Utilize** mocks, stubs ou fixtures quando necessário
+- **Garanta** cobertura de testes adequada
+- **Valide** funcionamento antes de prosseguir
+
+### Tipos de Testes
+- **Unit Tests**: Componentes e funções isoladas
+- **Integration Tests**: API endpoints e serviços
+- **E2E Tests**: Fluxos completos do jogo
+- **Performance Tests**: FPS, memória, latência
+
+## 📝 4. Documentação Contínua
+
+### Atualizações Obrigatórias
+Ao finalizar cada etapa:
+- [ ] **changelog.md** - Registre progresso e mudanças
+- [ ] **STATUS.md** - Atualize status atual
+- [ ] **todo.md** - Marque tarefas concluídas
+- [ ] **Documentação técnica** - Crie/atualize conforme necessário
+
+### Padrões de Documentação
+- **Localização**: Toda documentação na pasta `_docs/`
+- **Estrutura**: Seguir padrões estabelecidos
+- **Clareza**: Informações objetivas e organizadas
+- **Atualização**: Manter sempre sincronizada
+
+## 🔄 5. Controle de Versão
+
+### Commits e Push
+Sempre que concluir uma etapa:
+- [ ] **Commits descritivos** - Mensagens claras e específicas
+- [ ] **Push para GitHub** - Mantenha repositório atualizado
+- [ ] **Histórico organizado** - Commits frequentes e bem estruturados
+
+### Padrão de Commits
+```
+feat: adicionar sistema de naves autônomas
+fix: resolver problema de WebSocket
+docs: atualizar documentação de API
+refactor: otimizar performance do canvas
+test: adicionar testes para mineração
+```
+
+## 🎮 6. Contexto Específico: Space Miner Idle
+
+### Prioridades do Projeto
+1. **Resolver WebSocket** - Problema crítico de conexão
+2. **Integrar Matter.js** - Física realista
+3. **Polish UI/UX** - Melhorias visuais
+4. **Deploy Docker** - Containerização
+
+### Métricas de Qualidade
+- **Performance**: 60 FPS consistentes
+- **Memória**: < 50MB RAM
+- **Load Time**: < 3 segundos
+- **WebSocket Latency**: < 100ms
+
+### Stack Tecnológico
+- **Frontend**: React 18 + TypeScript + Vite
+- **Backend**: Node.js + Express + WebSocket
+- **Database**: SQLite + Prisma ORM
+- **Physics**: Matter.js (pendente)
+- **Deployment**: Docker (pendente)
+
+## 🚀 7. Checklist de Finalização
+
+### Antes de Considerar Tarefa Concluída
+- [ ] **Código funcionando** - Testado localmente
+- [ ] **Testes passando** - Cobertura adequada
+- [ ] **Documentação atualizada** - Todos os arquivos relevantes
+- [ ] **Commits realizados** - Histórico organizado
+- [ ] **Push para GitHub** - Repositório atualizado
+- [ ] **Próximos passos definidos** - Roadmap atualizado
+
+### Validação de Qualidade
+- [ ] **Performance** - Métricas dentro do esperado
+- [ ] **Código limpo** - Seguindo padrões estabelecidos
+- [ ] **Escalabilidade** - Arquitetura sustentável
+- [ ] **Manutenibilidade** - Fácil de manter e evoluir
+
+---
+
+**Última atualização**: Janeiro 2025  
+**Versão**: v1.0 

@@ -1,0 +1,315 @@
+# 📚 Padrão de Documentação
+
+## 🎯 Visão Geral
+Este documento define o padrão obrigatório de organização de documentação que deve ser seguido em TODOS os projetos. A IA deve sempre aplicar este padrão, garantindo consistência e organização em qualquer projeto.
+
+## 📁 Estrutura Obrigatória
+
+### Pasta Principal: `_docs/`
+Toda documentação deve ser centralizada na pasta `_docs/` na raiz do projeto, seguindo esta estrutura:
+
+```
+_docs/
+├── projeto/                     # 📋 Documentação de alto nível
+│   ├── PRD.md                  # Product Requirements Document
+│   ├── Game Design.md          # Design do jogo (se aplicável)
+│   ├── user-stories.md         # Histórias de usuário
+│   └── [outros-docs].md        # Outros documentos de projeto
+├── dev/                        #️ Documentação para desenvolvedores
+│   ├── status.md               # Status atual do projeto
+│   ├── todo.md                 # Próximas tarefas e roadmap
+│   ├── changelog.md            # Histórico de mudanças
+│   ├── ER.mermaid             # Diagrama de entidade-relacionamento
+│   ├── API.md                  # Documentação da API
+│   └── setup.md                # Guia de configuração
+├── systems/                    # ⚙️ Documentação de sistemas específicos
+│   ├── [sistema].md            # Documentação de cada sistema
+│   └── [outro-sistema].md      # Outros sistemas
+├── process/                    # 🔄 Documentação de processos
+│   ├── CONTRIBUTING.md         # Boas práticas e convenções
+│   ├── DEPLOYMENT.md           # Processo de deploy
+│   ├── TESTING.md              # Estratégia de testes
+│   └── [outro-processo].md     # Outros processos
+├── issues/                     # 📋 Documentação de problemas
+│   ├── known-bugs.md           # Lista consolidada de issues
+│   └── [problema].md           # Problemas específicos
+└── assets/                     # 🎨 Recursos e diagramas
+    ├── diagrams/               # Diagramas técnicos
+    ├── screenshots/            # Screenshots da aplicação
+    └── mockups/                # Mockups e wireframes
+```
+
+## 📋 Documentação Obrigatória
+
+### 1. `projeto/` - Documentação de Alto Nível
+**Propósito**: Documentação estratégica e de requisitos
+
+#### Arquivos Obrigatórios:
+- **PRD.md** - Product Requirements Document
+- **FRD.md** - Functional Requirements Document
+- **user-stories.md** - Histórias de usuário
+
+#### Arquivos Opcionais:
+
+### 2. `dev/` - Documentação para Desenvolvedores
+**Propósito**: Documentação técnica e de desenvolvimento
+
+#### Arquivos Obrigatórios:
+- **STATUS.md** - Status atual do projeto
+- **todo.md** - Próximas tarefas e roadmap
+- **changelog.md** - Histórico de mudanças
+- **ER.mermaid** - Diagrama de entidade-relacionamento
+- **API.md** - Documentação da API
+- **setup.md** - Guia de configuração
+
+#### Arquivos Opcionais:
+- **performance.md** - Métricas de performance
+- **deployment.md** - Processo de deploy
+- **testing.md** - Estratégia de testes
+- **database.md** - Documentação do banco de dados
+
+### 3. `systems/` - Documentação de Sistemas
+**Propósito**: Documentação técnica de sistemas específicos
+
+#### Padrão de Nomenclatura:
+- `[nome-sistema].md` - Ex: `auth-system.md`, `payment-system.md`
+- `[funcionalidade].md` - Ex: `user-management.md`, `notification.md`
+
+#### Exemplos Comuns:
+- `auth-system.md` - Sistema de autenticação
+- `payment-system.md` - Sistema de pagamentos
+- `notification-system.md` - Sistema de notificações
+- `cache-system.md` - Sistema de cache
+
+### 4. `process/` - Documentação de Processos
+**Propósito**: Processos, convenções e boas práticas
+
+#### Arquivos Obrigatórios:
+- **CONTRIBUTING.md** - Como contribuir para o projeto
+- **DEPLOYMENT.md** - Processo de deploy
+- **TESTING.md** - Estratégia de testes
+
+#### Arquivos Opcionais:
+- `CODE_REVIEW.md` - Processo de code review
+- `RELEASE.md` - Processo de release
+- `SECURITY.md` - Políticas de segurança
+- `MONITORING.md` - Estratégia de monitoramento
+
+### 5. `issues/` - Documentação de Problemas
+**Propósito**: Problemas conhecidos e bugs
+
+#### Arquivos Obrigatórios:
+- **known-bugs.md** - Lista consolidada de problemas
+
+#### Padrão para Problemas Específicos:
+- `[problema].md` - Ex: `websocket-timeout.md`, `memory-leak.md`
+- `[categoria]-[problema].md` - Ex: `performance-issue.md`
+
+### 6. `assets/` - Recursos e Diagramas
+**Propósito**: Recursos visuais, diagramas e mockups
+
+#### Estrutura:
+- **diagrams/** - Diagramas técnicos (arquitetura, fluxos, etc.)
+- **screenshots/** - Screenshots da aplicação
+- **mockups/** - Mockups e wireframes
+
+#### Padrão de Nomenclatura:
+- **Diagramas**: `[tipo]-[nome].png/svg` - Ex: `architecture-overview.png`
+- **Screenshots**: `[tela]-[versao].png` - Ex: `dashboard-v1.2.png`
+- **Mockups**: `[tela]-mockup.png` - Ex: `login-mockup.png`
+
+## 📝 Padrões de Nomenclatura
+
+### Arquivos
+- **Formato**: kebab-case (`auth-system.md`)
+- **Descritivo**: Nomes que explicam o conteúdo
+- **Consistente**: Mesmo padrão em todo o projeto
+
+### Pastas
+- **Formato**: camelCase ou kebab-case
+- **Claras**: Nomes que indicam o propósito
+- **Organizadas**: Estrutura lógica e intuitiva
+
+### Documentos
+- **Títulos**: Descritivos e claros
+- **Versões**: Sempre incluir data e versão
+- **Status**: Indicar se está atualizado
+
+## 🔄 Processo de Criação
+
+### 1. Análise do Projeto
+- **Identificar** tipo de projeto (web, mobile, game, etc.)
+- **Definir** documentação obrigatória baseada no tipo
+- **Criar** estrutura de pastas seguindo o padrão
+
+### 2. Criação da Estrutura
+```bash
+# Criar estrutura básica
+mkdir -p _docs/{projeto,dev,systems,process,issues,assets/{diagrams,screenshots,mockups}}
+
+# Criar arquivos obrigatórios
+touch _docs/projeto/{PRD,user-stories}.md
+touch _docs/dev/{STATUS,todo,changelog,API,setup}.md
+touch _docs/dev/ER.mermaid
+touch _docs/process/{CONTRIBUTING,DEPLOYMENT,TESTING}.md
+touch _docs/issues/known-bugs.md
+```
+
+### 3. Preenchimento Inicial
+- **README.md** (raiz) - Visão geral + como executar
+- **PRD.md** - Requisitos do produto
+- **STATUS.md** - Status atual
+- **todo.md** - Próximas tarefas
+- **CONTRIBUTING.md** - Como contribuir
+
+## 📊 Checklist de Validação
+
+### Estrutura
+- [ ] Pasta `_docs/` existe na raiz
+- [ ] Todas as subpastas obrigatórias criadas
+- [ ] Arquivos obrigatórios existem
+- [ ] Nomenclatura segue padrões
+
+### Conteúdo
+- [ ] README.md tem visão geral clara
+- [ ] PRD.md tem requisitos bem definidos
+- [ ] user-stories.md tem histórias de usuário
+- [ ] STATUS.md tem status atual
+- [ ] todo.md tem próximas tarefas
+- [ ] changelog.md tem histórico
+- [ ] API.md tem documentação da API
+- [ ] setup.md tem guia de configuração
+- [ ] CONTRIBUTING.md tem boas práticas
+- [ ] DEPLOYMENT.md tem processo de deploy
+- [ ] TESTING.md tem estratégia de testes
+
+### Qualidade
+- [ ] Documentação está atualizada
+- [ ] Informações são claras e objetivas
+- [ ] Links funcionam corretamente
+- [ ] Estrutura é intuitiva
+
+## 🚀 Aplicação em Diferentes Tipos de Projeto
+
+### Web Application
+```
+_docs/
+├── projeto/
+│   ├── PRD.md
+│   └── user-stories.md
+├── dev/
+│   ├── STATUS.md
+│   ├── todo.md
+│   ├── changelog.md
+│   ├── API.md
+│   └── setup.md
+├── systems/
+│   ├── auth-system.md
+│   ├── payment-system.md
+│   └── notification-system.md
+├── process/
+│   ├── CONTRIBUTING.md
+│   ├── DEPLOYMENT.md
+│   └── TESTING.md
+├── issues/
+│   └── known-bugs.md
+└── assets/
+    ├── diagrams/
+    ├── screenshots/
+    └── mockups/
+```
+
+### Game Project
+```
+_docs/
+├── projeto/
+│   ├── PRD.md
+│   ├── Game Design.md
+│   └── user-stories.md
+├── dev/
+│   ├── STATUS.md
+│   ├── todo.md
+│   ├── changelog.md
+│   ├── API.md
+│   └── setup.md
+├── systems/
+│   ├── physics-system.md
+│   ├── ai-system.md
+│   └── save-system.md
+├── process/
+│   ├── CONTRIBUTING.md
+│   ├── DEPLOYMENT.md
+│   └── TESTING.md
+├── issues/
+│   └── known-bugs.md
+└── assets/
+    ├── diagrams/
+    ├── screenshots/
+    └── mockups/
+```
+
+### Mobile App
+```
+_docs/
+├── projeto/
+│   ├── PRD.md
+│   └── user-stories.md
+├── dev/
+│   ├── STATUS.md
+│   ├── todo.md
+│   ├── changelog.md
+│   ├── API.md
+│   └── setup.md
+├── systems/
+│   ├── auth-system.md
+│   ├── push-notification.md
+│   └── offline-sync.md
+├── process/
+│   ├── CONTRIBUTING.md
+│   ├── DEPLOYMENT.md
+│   └── TESTING.md
+├── issues/
+│   └── known-bugs.md
+└── assets/
+    ├── diagrams/
+    ├── screenshots/
+    └── mockups/
+```
+
+## ⚠️ Regras Importantes
+
+### Obrigatório
+- **SEMPRE** usar a pasta `_docs/` na raiz
+- **SEMPRE** seguir a estrutura de pastas definida
+- **SEMPRE** criar arquivos obrigatórios
+- **SEMPRE** usar nomenclatura padronizada
+
+### Proibido
+- **NUNCA** criar documentação fora de `_docs/`
+- **NUNCA** usar nomes inconsistentes
+- **NUNCA** deixar documentação desatualizada
+- **NUNCA** ignorar arquivos obrigatórios
+
+### Flexível
+- **PODE** adicionar pastas específicas se necessário
+- **PODE** adaptar para necessidades específicas do projeto
+- **PODE** incluir documentação adicional conforme necessário
+
+## 🔄 Manutenção Contínua
+
+### Atualizações Obrigatórias
+- **STATUS.md** - Sempre que houver mudanças significativas
+- **changelog.md** - A cada nova versão/feature
+- **todo.md** - Sempre que tarefas forem concluídas
+- **known-bugs.md** - Quando novos problemas forem descobertos
+
+### Revisões Periódicas
+- **Mensal**: Revisar estrutura e organização
+- **Trimestral**: Validar se padrões ainda são adequados
+- **Anual**: Avaliar necessidade de novos padrões
+
+---
+
+**Última atualização**: Janeiro 2025  
+**Versão**: v1.0  
+**Aplicabilidade**: TODOS os projetos 
