@@ -1,9 +1,10 @@
 # Status do Projeto - Asteroid Forge Idle
 
 ## 📊 Status Geral
-- **Versão**: v0.5.1
-- **Status**: ✅ ESTÁVEL - Física Realista + Código Limpo
+- **Versão**: v0.6.0
+- **Status**: ✅ ESTÁVEL - Sistema de Sons Implementado
 - **Última Atualização**: 2025-01-29
+- **Servidor**: ✅ RODANDO - Frontend: http://localhost:8080/ | Backend: http://localhost:3000/
 
 ## 🎯 Problema Crítico
 - **Status**: ✅ RESOLVIDO - Física realista com Matter.js implementada
@@ -42,8 +43,19 @@
 - **UpgradePanelUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
 - **ShipManagerUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
 - **MiningFeedbackUltraSimple**: ✅ FUNCIONAL - Versão ultra-simplificada sem WebSocket
+- **AudioControls**: ✅ FUNCIONAL - Controles de áudio completos
 - **Layout UI**: ✅ CORRIGIDO - CSS otimizado sem conflitos
 - **Código Limpo**: ✅ OTIMIZADO - 9 componentes não utilizados removidos
+- **Performance**: ✅ MELHORADA - Menos arquivos para carregar, manutenção simplificada
+
+### 🔊 Sistema de Sons (NOVO!)
+- **AudioService**: ✅ IMPLEMENTADO - Serviço singleton para gerenciar áudio
+- **AudioGenerator**: ✅ FUNCIONAL - Gerador de sons sintéticos como fallback
+- **useAudio Hook**: ✅ IMPLEMENTADO - Hook personalizado para áudio
+- **Sons Integrados**: ✅ FUNCIONAL - Mineração, colisão, navegação, deploy
+- **Música de Fundo**: ✅ FUNCIONAL - Trilha sonora espacial automática
+- **Controles de Volume**: ✅ FUNCIONAL - Volume geral, música e efeitos separados
+- **Fallback Sintético**: ✅ FUNCIONAL - Sons gerados quando arquivos não disponíveis
 
 ### ✅ Backend
 - **Server**: ✅ ESTÁVEL - Node.js + Express + TypeScript
@@ -72,30 +84,51 @@
 ### ✅ Código Limpo
 - **Status**: ✅ RESOLVIDO - Componentes não utilizados removidos
 - **Solução**: Remoção de 9 componentes duplicados e imports não utilizados
+- **Componentes Removidos**: SpaceCanvas.tsx, SpaceCanvasFixed.tsx, SimpleCanvas.tsx, ResourcePanel.tsx, ResourcePanelOptimized.tsx, UpgradePanel.tsx, UpgradePanelOptimized.tsx, ShipManager.tsx, MiningFeedback.tsx
+- **Imports Limpos**: Removido import não utilizado do SpaceCanvas no App.tsx
 
 ## 📈 Próximos Passos
 
-### 🎯 Física Avançada
-1. **Colisões Complexas** - Diferentes tipos de colisão
-2. **Efeitos de Partículas** - Sistema de partículas avançado
-3. **Física de Destruição** - Asteroides que se quebram
-4. **Campos de Força** - Gravidade e campos magnéticos
+### ⚡ Otimizações de Performance (v0.7.0) - **PRÓXIMO**
+1. **Level of Detail (LOD)** - Renderização otimizada para objetos distantes
+2. **Object Pooling** - Pool de partículas, asteroides, naves autônomas
+3. **Memory Management** - Garbage collection otimizado, limpeza automática
 
-### 🔊 Sistema de Sons
-1. **Efeitos Sonoros** - Mineração, colisões, navegação
-2. **Música de Fundo** - Trilha sonora espacial
-3. **Feedback Sonoro** - Sons de interface
+### ⚡ Otimizações de Performance (v0.7.0)
+1. **Level of Detail (LOD)** - Renderização otimizada para objetos distantes
+2. **Object Pooling** - Pool de partículas, asteroides, naves autônomas
+3. **Memory Management** - Garbage collection otimizado, limpeza automática
 
-### ⚡ Otimizações
-1. **Level of Detail** - Renderização otimizada para objetos distantes
-2. **Object Pooling** - Redução de garbage collection
-3. **Culling** - Objetos fora da tela não são renderizados
+### 🎮 Expansão do Gameplay (v0.8.0)
+1. **Mais Tipos de Asteroides** - Rare (dourados), Epic (rosa), Legendary (púrpura)
+2. **Sistema de Prestígio** - Reset com bônus, multiplicadores de recursos
+3. **Múltiplos Setores** - Alpha, Beta, Gamma, Omega
+4. **Eventos Especiais** - Missões temporárias, asteroides gigantes
 
-### 🎮 Gameplay
-1. **Mais Tipos de Asteroides** - Rare, Epic, Legendary
-2. **Sistema de Prestígio** - Reset com bônus
-3. **Múltiplos Setores** - Diferentes áreas espaciais
-4. **Eventos Especiais** - Missões e desafios
+### 📱 Mobile Responsivo (v0.9.0)
+1. **Controles Touch** - Joystick virtual, botões de ação, gestos
+2. **UI Adaptativa** - Layout responsivo, painéis colapsáveis
+3. **Performance Mobile** - Otimização para dispositivos móveis
+
+### 🎯 Sistema de Salvamento (v1.0.0)
+1. **Persistência Local** - Salvamento automático, sincronização
+2. **Cloud Sync** - Backup na nuvem, múltiplos dispositivos
+
+## 🚀 Estado Atual do Servidor
+
+### ✅ Servidor Rodando
+- **Frontend**: http://localhost:8080/ ✅ FUNCIONAL
+- **Backend**: http://localhost:3000/ ✅ FUNCIONAL  
+- **WebSocket**: ws://localhost:3000 ✅ ESTÁVEL
+- **Database**: SQLite (game.db) ✅ FUNCIONAL
+- **Game Loop**: ✅ ATIVO - Recursos sendo gerados automaticamente
+- **Conexões**: 0 clientes conectados (aguardando)
+
+### 📊 Recursos em Tempo Real
+- **Crystals**: Gerando automaticamente (~1/segundo)
+- **Energy**: 0 (consumo automático)
+- **Research**: 0 (requer crystals ≥ 10)
+- **Reputation**: 0 (requer research ≥ 5)
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -126,7 +159,7 @@
 - [x] v0.3.0 - WebSocket e backend
 - [x] v0.4.0 - UI components
 - [x] v0.5.0 - Física realista
-- [ ] v0.6.0 - Sistema de sons
+- [x] v0.6.0 - Sistema de sons
 - [ ] v0.7.0 - Otimizações avançadas
 - [ ] v0.8.0 - Expansão de gameplay
 - [ ] v1.0.0 - Release completo 

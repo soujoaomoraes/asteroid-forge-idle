@@ -4,6 +4,7 @@ import { AsteroidService } from '../services/asteroidService';
 import { MiningService } from '../services/miningService';
 import { AutonomousShipService } from '../services/autonomousShipService';
 import { Ship as AutonomousShip, ShipType } from '../types/ship';
+import { useAudio } from '../hooks/useAudio';
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
@@ -48,12 +49,23 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
   const [autonomousShips, setAutonomousShips] = useState<AutonomousShip[]>([]);
   const [miningMode, setMiningMode] = useState(false);
   const [lastMiningTime, setLastMiningTime] = useState(0);
+  const [lastNavigationSound, setLastNavigationSound] = useState(0);
 
   // Physics service
   const [physicsService] = useState(() => PhysicsService.getInstance());
   const [shipBody, setShipBody] = useState<PhysicsBody | null>(null);
   const [asteroidBodies, setAsteroidBodies] = useState<Map<string, PhysicsBody>>(new Map());
   const [particleBodies, setParticleBodies] = useState<Map<string, PhysicsBody>>(new Map());
+
+  // Audio system
+  const {
+    playMiningSound,
+    playCollisionSound,
+    playNavigationSound,
+    playShipDeploySound,
+    playMusic,
+    isLoaded: audioLoaded
+  } = useAudio();
 
   // Gerar estrelas iniciais
   useEffect(() => {
@@ -71,7 +83,7 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
     setStars(initialStars);
   }, []);
 
-  // Inicializar física
+  // Inicializar física e áudio
   useEffect(() => {
     // Inicializar mundo físico
     const world = physicsService.initialize(WORLD_WIDTH, WORLD_HEIGHT);
@@ -84,6 +96,9 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
     physicsService.onCollision((bodyA, bodyB) => {
       console.log('💥 Colisão:', bodyA.type, 'vs', bodyB.type);
       
+      // Tocar som de colisão
+      playCollisionSound();
+      
       // Criar partículas de impacto
       if (bodyA.type === 'ship' && bodyB.type === 'asteroid') {
         createImpactParticles(bodyA.body.position.x, bodyA.body.position.y);
@@ -93,10 +108,15 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
     // Iniciar física
     physicsService.start();
 
+    // Iniciar música quando áudio estiver carregado
+    if (audioLoaded) {
+      playMusic();
+    }
+
     return () => {
       physicsService.destroy();
     };
-  }, [physicsService]);
+  }, [physicsService, audioLoaded, playCollisionSound, playMusic]);
 
   const createImpactParticles = (x: number, y: number) => {
     for (let i = 0; i < 5; i++) {
@@ -123,21 +143,25 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
       // Deploy naves com teclas numéricas
       if (event.key === '1') {
         event.preventDefault();
+        playShipDeploySound();
         onDeployShip?.(ShipType.SCOUT);
         autonomousShipService.deployShip(ShipType.SCOUT, ship.position.x, ship.position.y);
       }
       if (event.key === '2') {
         event.preventDefault();
+        playShipDeploySound();
         onDeployShip?.(ShipType.MINER);
         autonomousShipService.deployShip(ShipType.MINER, ship.position.x, ship.position.y);
       }
       if (event.key === '3') {
         event.preventDefault();
+        playShipDeploySound();
         onDeployShip?.(ShipType.HAULER);
         autonomousShipService.deployShip(ShipType.HAULER, ship.position.x, ship.position.y);
       }
       if (event.key === '4') {
         event.preventDefault();
+        playShipDeploySound();
         onDeployShip?.(ShipType.DESTROYER);
         autonomousShipService.deployShip(ShipType.DESTROYER, ship.position.x, ship.position.y);
       }
@@ -200,6 +224,12 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
           // Aplicar força
           if (forceX !== 0 || forceY !== 0) {
             physicsService.applyForce(shipBody.id, { x: forceX, y: forceY });
+            // Tocar som de navegação (com throttling para evitar spam)
+            const now = Date.now();
+            if (now - lastNavigationSound > 200) {
+              playNavigationSound();
+              setLastNavigationSound(now);
+            }
           }
 
           // Atualizar posição da nave
@@ -268,6 +298,9 @@ export function SpaceCanvasPhysics({ onMiningFeedback, onDeployShip }: SpaceCanv
               const resources = asteroidService.mineAsteroid(closestAsteroid.id, 1);
               if (resources) {
                 console.log('⛏️ Mineração:', resources);
+                
+                // Tocar som de mineração
+                playMiningSound();
                 
                 miningService.addMinedResources(resources).then((success: boolean) => {
                   if (success) {

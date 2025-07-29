@@ -1,5 +1,25 @@
 # 📝 Changelog - Space Miner Idle
 
+## [v0.6.0] - 2025-01-29
+
+### Added
+- 🔊 **Sistema de Sons Completo** - Implementado sistema de áudio completo
+  - **AudioService**: Serviço singleton para gerenciar todos os sons
+  - **AudioGenerator**: Gerador de sons sintéticos como fallback
+  - **useAudio Hook**: Hook personalizado para gerenciar áudio
+  - **AudioControls Component**: Interface de controle de áudio
+  - **Sons Integrados**: Mineração, colisão, navegação, deploy de naves
+  - **Música de Fundo**: Trilha sonora espacial automática
+  - **Controles de Volume**: Volume geral, música e efeitos sonoros separados
+  - **Fallback Sintético**: Sons gerados quando arquivos não estão disponíveis
+
+### Technical
+- Integração completa com Web Audio API
+- Sistema de fallback para sons sintéticos
+- Controles de volume independentes
+- Throttling para sons de navegação
+- Interface de controle responsiva
+
 ## [v0.5.1] - 2025-01-29
 
 ### Removed

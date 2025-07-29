@@ -5,6 +5,7 @@ import ResourcePanelUltraSimple from './components/ResourcePanelUltraSimple';
 import UpgradePanelUltraSimple from './components/UpgradePanelUltraSimple';
 import MiningFeedbackUltraSimple from './components/MiningFeedbackUltraSimple';
 import ShipManagerUltraSimple from './components/ShipManagerUltraSimple';
+import { AudioControls } from './components/AudioControls';
 import { ShipType } from './types/ship';
 import './components/ResourcePanel.css';
 import './components/UpgradePanel.css';
@@ -39,6 +40,7 @@ function App() {
         onMiningFeedback={setLastMinedResources}
         onDeployShip={handleDeployShip}
       />
+      <AudioControls />
       <div className="ui-panels">
         <ResourcePanelUltraSimple />
         <UpgradePanelUltraSimple />

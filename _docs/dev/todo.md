@@ -23,22 +23,22 @@
 
 ## 🚀 Próximos Passos
 
-### 🔊 Sistema de Sons (v0.6.0)
+### 🔊 Sistema de Sons (v0.6.0) - ✅ CONCLUÍDO
 1. **Efeitos Sonoros**
-   - [ ] Som de mineração
-   - [ ] Som de colisão
-   - [ ] Som de navegação
-   - [ ] Som de deploy de naves
+   - [x] Som de mineração
+   - [x] Som de colisão
+   - [x] Som de navegação
+   - [x] Som de deploy de naves
 
 2. **Música de Fundo**
-   - [ ] Trilha sonora espacial
-   - [ ] Música de menu
-   - [ ] Música de gameplay
+   - [x] Trilha sonora espacial
+   - [x] Música de menu
+   - [x] Música de gameplay
 
 3. **Feedback Sonoro**
-   - [ ] Sons de interface
-   - [ ] Sons de upgrades
-   - [ ] Sons de conquistas
+   - [x] Sons de interface
+   - [x] Sons de upgrades
+   - [x] Sons de conquistas
 
 ### ⚡ Otimizações de Performance (v0.7.0)
 1. **Level of Detail (LOD)**

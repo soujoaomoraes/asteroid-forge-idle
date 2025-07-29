@@ -1,7 +1,13 @@
 # 📚 Padrão de Documentação
 
 ## 🎯 Visão Geral
-Este documento define o padrão obrigatório de organização de documentação que deve ser seguido em TODOS os projetos. A IA deve sempre aplicar este padrão, garantindo consistência e organização em qualquer projeto.
+Este documento define **COMO EU (Avalon) organizo documentação** em TODOS os projetos. Como Full Stack Senior Developer, sigo estes padrões para garantir consistência e organização em qualquer projeto.
+
+### 📚 Documentos Relacionados
+- **`_persona.md`**: Quem EU sou e minha filosofia (DOCUMENTO PRINCIPAL)
+- **`documentation-pattern.md`**: Como EU organizo documentação (este documento)
+- **`workflow-pattern.md`**: Como EU executo desenvolvimento
+- **`tdd-pattern.md`**: Como EU faço desenvolvimento orientado a testes
 
 ## 📁 Estrutura Obrigatória
 
@@ -39,15 +45,21 @@ _docs/
     └── mockups/                # Mockups e wireframes
 ```
 
-## 📋 Documentação Obrigatória
+## 📋 Como EU Organizo Documentação - RESPONSABILIDADES CLARAS
 
 ### 1. `projeto/` - Documentação de Alto Nível
 **Propósito**: Documentação estratégica e de requisitos
 
 #### Arquivos Obrigatórios:
 - **PRD.md** - Product Requirements Document
-- **FRD.md** - Functional Requirements Document
+  - **RESPONSABILIDADE**: Requisitos do produto, visão, objetivos, métricas de sucesso
+  - **NÃO CONTÉM**: Status técnico, próximas tarefas, histórico de mudanças
+- **FRD.md** - Functional Requirements Document  
+  - **RESPONSABILIDADE**: Requisitos funcionais detalhados, casos de uso, regras de negócio
+  - **NÃO CONTÉM**: Status de implementação, roadmap técnico
 - **user-stories.md** - Histórias de usuário
+  - **RESPONSABILIDADE**: Histórias de usuário, personas, jornadas do usuário
+  - **NÃO CONTÉM**: Status técnico, implementação
 
 #### Arquivos Opcionais:
 
@@ -55,12 +67,32 @@ _docs/
 **Propósito**: Documentação técnica e de desenvolvimento
 
 #### Arquivos Obrigatórios:
-- **STATUS.md** - Status atual do projeto
+- **status.md** - Status atual do projeto
+  - **RESPONSABILIDADE**: Estado atual do projeto, funcionalidades implementadas, problemas resolvidos, servidor rodando
+  - **NÃO CONTÉM**: Próximas tarefas detalhadas, roadmap futuro, histórico completo
+  - **CONTÉM**: Status do servidor, recursos em tempo real, tecnologias utilizadas
+
 - **todo.md** - Próximas tarefas e roadmap
+  - **RESPONSABILIDADE**: Lista de tarefas pendentes, roadmap de versões, próximos passos detalhados
+  - **NÃO CONTÉM**: Status atual, histórico de mudanças, problemas resolvidos
+  - **CONTÉM**: Tarefas organizadas por versão, prioridades, estimativas
+
 - **changelog.md** - Histórico de mudanças
+  - **RESPONSABILIDADE**: Histórico completo de todas as mudanças, versões, releases
+  - **NÃO CONTÉM**: Status atual, próximas tarefas, roadmap
+  - **CONTÉM**: Mudanças por versão, data, autor, detalhes técnicos
+
 - **ER.mermaid** - Diagrama de entidade-relacionamento
+  - **RESPONSABILIDADE**: Diagrama de entidades e relacionamentos do banco de dados
+  - **NÃO CONTÉM**: Status de implementação, próximas entidades
+
 - **API.md** - Documentação da API
+  - **RESPONSABILIDADE**: Endpoints, parâmetros, respostas, exemplos de uso
+  - **NÃO CONTÉM**: Status de implementação, roadmap da API
+
 - **setup.md** - Guia de configuração
+  - **RESPONSABILIDADE**: Como configurar o ambiente, instalar dependências, executar o projeto
+  - **NÃO CONTÉM**: Status do servidor, problemas de configuração
 
 #### Arquivos Opcionais:
 - **performance.md** - Métricas de performance
@@ -283,22 +315,83 @@ _docs/
 - **SEMPRE** seguir a estrutura de pastas definida
 - **SEMPRE** criar arquivos obrigatórios
 - **SEMPRE** usar nomenclatura padronizada
+- **SEMPRE** respeitar as responsabilidades de cada documento
 
 ### Proibido
 - **NUNCA** criar documentação fora de `_docs/`
 - **NUNCA** usar nomes inconsistentes
 - **NUNCA** deixar documentação desatualizada
 - **NUNCA** ignorar arquivos obrigatórios
+- **NUNCA** duplicar informações entre documentos
+- **NUNCA** colocar status atual em todo.md
+- **NUNCA** colocar próximas tarefas em status.md
+- **NUNCA** colocar histórico em status.md
 
 ### Flexível
 - **PODE** adicionar pastas específicas se necessário
 - **PODE** adaptar para necessidades específicas do projeto
 - **PODE** incluir documentação adicional conforme necessário
 
+## 🔄 Regras de Não-Duplicação
+
+### ❌ PROIBIDO - Informações que NUNCA devem ser duplicadas:
+
+1. **Próximas Tarefas**
+   - ✅ **ONDE**: Apenas em `todo.md`
+   - ❌ **NÃO**: Em `status.md`, `changelog.md`, ou outros documentos
+
+2. **Status Atual**
+   - ✅ **ONDE**: Apenas em `status.md`
+   - ❌ **NÃO**: Em `todo.md`, `changelog.md`, ou outros documentos
+
+3. **Histórico de Mudanças**
+   - ✅ **ONDE**: Apenas em `changelog.md`
+   - ❌ **NUNCA**: Em `status.md`, `todo.md`, ou outros documentos
+
+4. **Roadmap de Versões**
+   - ✅ **ONDE**: Apenas em `todo.md`
+   - ❌ **NÃO**: Em `status.md` ou outros documentos
+
+### ✅ PERMITIDO - Referências cruzadas:
+
+1. **Links entre documentos**
+   - ✅ `status.md` pode linkar para `todo.md` para próximas tarefas
+   - ✅ `todo.md` pode linkar para `status.md` para status atual
+   - ✅ `changelog.md` pode linkar para ambos
+
+2. **Resumos breves**
+   - ✅ `status.md` pode ter um resumo de "Próximo: Sistema de Sons"
+   - ✅ `todo.md` pode ter um resumo de "Status: v0.5.1 estável"
+
+### 🎯 Exemplo de Separação Correta:
+
+**status.md:**
+```markdown
+## 📊 Status Geral
+- **Versão**: v0.5.1
+- **Status**: ✅ ESTÁVEL
+- **Próximo**: Sistema de Sons (ver todo.md)
+```
+
+**todo.md:**
+```markdown
+## 🚀 Próximos Passos
+- **Status Atual**: v0.5.1 estável (ver status.md)
+- **Próximo**: Sistema de Sons (v0.6.0)
+```
+
+**changelog.md:**
+```markdown
+## [v0.5.1] - 2025-01-29
+- Limpeza de componentes não utilizados
+- Status atualizado (ver status.md)
+- Próximas tarefas organizadas (ver todo.md)
+```
+
 ## 🔄 Manutenção Contínua
 
 ### Atualizações Obrigatórias
-- **STATUS.md** - Sempre que houver mudanças significativas
+- **status.md** - Sempre que houver mudanças significativas
 - **changelog.md** - A cada nova versão/feature
 - **todo.md** - Sempre que tarefas forem concluídas
 - **known-bugs.md** - Quando novos problemas forem descobertos
@@ -307,6 +400,62 @@ _docs/
 - **Mensal**: Revisar estrutura e organização
 - **Trimestral**: Validar se padrões ainda são adequados
 - **Anual**: Avaliar necessidade de novos padrões
+
+## 🤖 Verificação de Duplicações - OBRIGATÓRIO PARA IA
+
+### ✅ Checklist Antes de Atualizar Qualquer Documento:
+
+1. **Verificar Responsabilidade**
+   - [ ] Esta informação pertence ao documento correto?
+   - [ ] Não está duplicada em outro documento?
+   - [ ] Respeita as responsabilidades definidas?
+
+2. **Verificar Conteúdo**
+   - [ ] `status.md` contém apenas status atual?
+   - [ ] `todo.md` contém apenas próximas tarefas?
+   - [ ] `changelog.md` contém apenas histórico?
+
+3. **Verificar Referências**
+   - [ ] Links entre documentos estão corretos?
+   - [ ] Resumos breves não duplicam informações?
+   - [ ] Referências cruzadas são apropriadas?
+
+### 🚨 Ações Obrigatórias ao Encontrar Duplicações:
+
+1. **Identificar a Fonte Principal**
+   - Determinar qual documento deve conter a informação
+   - Remover de todos os outros documentos
+
+2. **Criar Referências Cruzadas**
+   - Adicionar links entre documentos
+   - Usar resumos breves quando necessário
+
+3. **Documentar a Correção**
+   - Atualizar `changelog.md` com a correção
+   - Explicar por que a duplicação foi removida
+
+### 📋 Exemplo de Correção de Duplicação:
+
+**ANTES (INCORRETO):**
+```markdown
+# status.md
+- Próximas tarefas: Sistema de Sons, Otimizações, Mobile
+
+# todo.md  
+- Status atual: v0.5.1 estável
+- Próximas tarefas: Sistema de Sons, Otimizações, Mobile
+```
+
+**DEPOIS (CORRETO):**
+```markdown
+# status.md
+- Status: v0.5.1 estável
+- Próximo: Sistema de Sons (ver todo.md)
+
+# todo.md
+- Status atual: v0.5.1 estável (ver status.md)
+- Próximas tarefas: Sistema de Sons, Otimizações, Mobile
+```
 
 ---
 

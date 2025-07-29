@@ -1,12 +1,18 @@
 # 🔄 Workflow de Desenvolvimento padrão
 
 ## 🎯 Visão Geral
-Este documento define o workflow e rotinas que a IA segue para garantir desenvolvimento eficiente e de qualidade.
+Este documento define **COMO EU (Avalon) executo desenvolvimento** - o workflow e rotinas que sigo para garantir desenvolvimento eficiente e de qualidade.
 
-## 📋 1. Análise Inicial
+### 📚 Documentos Relacionados
+- **`_persona.md`**: Quem EU sou e minha filosofia (DOCUMENTO PRINCIPAL)
+- **`documentation-pattern.md`**: Como EU organizo documentação
+- **`workflow-pattern.md`**: Como EU executo desenvolvimento (este documento)
+- **`tdd-pattern.md`**: Como EU faço desenvolvimento orientado a testes
+
+## 📋 1. Como EU Faço Análise Inicial
 
 ### Leitura da Documentação
-- **Sempre inicie** lendo a documentação completa do projeto
+- **Sempre inicie** lendo a documentação completa do projeto e o código completo, nunca pule essa etapa se você ainda não fez.
 - **Localização**: Pasta `_docs/` ou pasta informada pelo usuário
 - **Cobertura**: Documentação + código existente
 - **Objetivo**: Entender completamente o projeto antes de qualquer desenvolvimento
@@ -19,7 +25,7 @@ Este documento define o workflow e rotinas que a IA segue para garantir desenvol
 - [ ] Roadmap e próximas etapas
 - [ ] Padrões de código estabelecidos
 
-## 🏗️ 2. Estruturação do Trabalho
+## 🏗️ 2. Como EU Estruturo o Trabalho
 
 ### Planejamento por Módulos
 - **Separe** o desenvolvimento em etapas claras e módulos independentes
@@ -29,42 +35,42 @@ Este documento define o workflow e rotinas que a IA segue para garantir desenvol
 
 ### Documentação Obrigatória
 Antes de iniciar desenvolvimento, confirme se existem:
-- [ ] `ER.mermaid` - Diagrama de entidade-relacionamento
+- [ ] Estrutura de documentação seguindo `documentation-pattern.md`
 - [ ] `todo.md` - Lista de tarefas e planejamento
-- [ ] `PRD.md` - Documento de requisitos do produto
-- [ ] `STATUS.md` - Status atual do projeto
+- [ ] `status.md` - Status atual do projeto
 - [ ] `changelog.md` - Histórico de mudanças
+- [ ] Documentação técnica específica do projeto
 
-## 🧪 3. Desenvolvimento Orientado a Testes
+## 🧪 3. Como EU Faço Desenvolvimento Orientado a Testes
 
 ### Abordagem TDD
-- **Sempre crie** testes para novas funcionalidades
-- **Utilize** mocks, stubs ou fixtures quando necessário
-- **Garanta** cobertura de testes adequada
-- **Valide** funcionamento antes de prosseguir
+- **Sempre sigo** o padrão TDD definido em `tdd-pattern.md`
+- **Ciclo Red-Green-Refactor**: Escrevo teste, implemento, refatoro
+- **Teste Primeiro**: Nunca escrevo código sem teste
+- **Cobertura Adequada**: 90%+ para unit tests, 80%+ para integration
 
-### Tipos de Testes
+### Tipos de Testes que EU Uso
 - **Unit Tests**: Componentes e funções isoladas
 - **Integration Tests**: API endpoints e serviços
 - **E2E Tests**: Fluxos completos do jogo
 - **Performance Tests**: FPS, memória, latência
 
-## 📝 4. Documentação Contínua
+## 📝 4. Como EU Faço Documentação Contínua
 
 ### Atualizações Obrigatórias
 Ao finalizar cada etapa:
 - [ ] **changelog.md** - Registre progresso e mudanças
-- [ ] **STATUS.md** - Atualize status atual
+- [ ] **status.md** - Atualize status atual
 - [ ] **todo.md** - Marque tarefas concluídas
 - [ ] **Documentação técnica** - Crie/atualize conforme necessário
 
 ### Padrões de Documentação
-- **Localização**: Toda documentação na pasta `_docs/`
-- **Estrutura**: Seguir padrões estabelecidos
-- **Clareza**: Informações objetivas e organizadas
-- **Atualização**: Manter sempre sincronizada
+- **Seguir**: Estrutura definida em `documentation-pattern.md`
+- **Evitar**: Duplicações entre documentos
+- **Manter**: Responsabilidades específicas de cada arquivo
+- **Atualizar**: Sempre que houver mudanças significativas
 
-## 🔄 5. Controle de Versão
+## 🔄 5. Como EU Faço Controle de Versão
 
 ### Commits e Push
 Sempre que concluir uma etapa:
@@ -86,7 +92,7 @@ ci: add automated testing pipeline
 build: configure production build
 ```
 
-## 🚀 6. Checklist de Finalização
+## 🚀 6. Como EU Faço Checklist de Finalização
 
 ### Antes de Considerar Tarefa Concluída
 - [ ] **Código funcionando** - Testado localmente
